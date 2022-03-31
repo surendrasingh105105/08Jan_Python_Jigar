@@ -1,0 +1,74 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+  
+  <div class="site-wrap">
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Wishlist</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+
+        <div class="row mb-5">
+          <div class="col-md-9 order-2">
+
+            <div class="row">
+              <div class="col-md-12 mb-5">
+               
+                <div class="d-flex">
+                  <div class="dropdown mr-1 ml-md-auto">
+                   
+                   
+                  </div>
+                  <div class="btn-group">
+                    
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-5">
+
+              {% if wishlists %}
+
+              {% for i in wishlists %}
+              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image">
+                    <a href="{% url 'product_detail' pk=i.product.pk %}"><img src="{{i.product.product_image.url}}" alt="Image placeholder"  class="img-fluid" style="width:150px;height:200px;"></a>
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="{% url 'shop_single' %}">{{i.product.product_collection}}</a></h3>
+                    <p class="mb-0">{{i.product_category}}</p>
+                    <p class="text-primary font-weight-bold">{{i.product.product_price}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              {% else %}
+                <h2>No Products In Wishlist</h2>
+              {% endif %}
+            </div>
+            
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+    
+  </body>
+</html>
+{% endblock %}

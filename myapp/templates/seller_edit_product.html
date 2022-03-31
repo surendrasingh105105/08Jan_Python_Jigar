@@ -1,0 +1,215 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+  
+  <div class="site-wrap">
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Edit Product</strong></div>
+        </div>
+      </div>
+    </div>  
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="h3 mb-3 text-black">Edit Product</h2>
+          </div>
+          <div class="col-md-12">
+            {% if msg %}
+              <h4 style="color:black;">{{msg}}</h4>
+            {% endif %}
+            <form action="{% url 'seller_edit_product' pk=product.pk %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="p-3 p-lg-12 border">
+                <div class="form-group row">
+                  <div class="col-md-12" align="center">
+
+                    <select class="form-control" name="product_collection">
+                      {% if product.product_collection == "men" %}
+                        <option value="men" selected>Men</option>
+                        <option value="women">Women</option>
+                        <option value="kids">kids</option>
+                      {% elif product.product_collection == "women" %}
+                        <option value="men">Men</option>
+                        <option value="women" selected>Women</option>
+                        <option value="kids">kids</option>
+                      {% elif product.product_collection == "kids" %}
+                        <option value="men">Men</option>
+                        <option value="women">Women</option>
+                        <option value="kids" selected>kids</option>
+                      {% else %}
+                        <option>---Select Collection---</option>
+                        <option value="men">Men</option>
+                        <option value="women">Women</option>
+                        <option value="kids">kids</option>
+                      {% endif %}
+                    </select>
+
+                  </div>
+                  <br><br>
+                  <div class="col-md-12" align="center">
+                    <select class="form-control" name="product_category">
+                      {% if product.product_category == "shirt" %}
+                        <option value="shirt" selected>Shirt</option>
+                        <option value="tshirt">T-Shirt</option>
+                        <option value="jeans">Jeans</option>
+                      {% elif product.product_category == "tshirt" %}
+                        <option value="shirt">Shirt</option>
+                        <option value="tshirt" selected>T-Shirt</option>
+                        <option value="jeans">Jeans</option>
+                      {% elif product.product_category == "jeans" %}
+                        <option value="shirt">Shirt</option>
+                        <option value="tshirt">T-Shirt</option>
+                        <option value="jeans" selected>Jeans</option>
+                      {% else %}
+                        <option>---Select Category---</option>
+                        <option value="shirt">Shirt</option>
+                        <option value="tshirt">T-Shirt</option>
+                        <option value="jeans">Jeans</option>
+                      {% endif %}
+                      
+                    </select>
+                  </div>
+                  <br><br>
+                  <div class="col-md-12" align="center">
+                    <select class="form-control" name="product_size">
+
+                      {% if product.product_size == "s" %}
+                        <option value="s" selected>Small</option>
+                        <option value="m">Medium</option>
+                        <option value="l">Large</option>
+                      {% elif product.product_size == "m" %}
+                        <option value="s">Small</option>
+                        <option value="m" selected>Medium</option>
+                        <option value="l">Large</option>
+                      {% elif product.product_size == "l" %}
+                        <option value="s">Small</option>
+                        <option value="m">Medium</option>
+                        <option value="l" selected>Large</option>
+                      {% else %}
+                        <option>---Select Size---</option>
+                        <option value="s">Small</option>
+                        <option value="m">Medium</option>
+                        <option value="l">Large</option>
+                      {% endif %}
+                      
+                    </select>
+                  </div>
+                  <br><br>
+                  <div class="col-md-12" align="center">
+                    <select class="form-control" name="product_color">
+
+                      {% if product.product_color == "blue" %}
+                        <option value="blue" selected>Blue</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="pink">Pink</option>
+                        <option value="green">Green</option>
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                      {% elif product.product_color == "black" %}
+                        <option value="blue">Blue</option>
+                        <option value="black" selected>Black</option>
+                        <option value="white">White</option>
+                        <option value="pink">Pink</option>
+                        <option value="green">Green</option>
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                      {% elif product.product_color == "white" %}
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+                        <option value="white" selected>White</option>
+                        <option value="pink">Pink</option>
+                        <option value="green">Green</option>
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                      {% elif product.product_color == "pink" %}
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="pink" selected>Pink</option>
+                        <option value="green">Green</option>
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                      {% elif product.product_color == "green" %}
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="pink">Pink</option>
+                        <option value="green" selected>Green</option>
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                      {% elif product.product_color == "red" %}
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="pink">Pink</option>
+                        <option value="green">Green</option>
+                        <option value="red" selected>Red</option>
+                        <option value="yellow">Yellow</option>
+                      {% elif product.product_color == "yellow" %}
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="pink">Pink</option>
+                        <option value="green">Green</option>
+                        <option value="red">Red</option>
+                        <option value="yellow" selected>Yellow</option>
+                      {% else %}
+                        <option>---Select Color---</option>
+                        <option value="blue">Blue</option>
+                        <option value="black">Black</option>
+                        <option value="white">White</option>
+                        <option value="pink">Pink</option>
+                        <option value="green">Green</option>
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                      {% endif %}
+                      
+                    </select>
+                  </div>
+                  <br><br>
+                  <div class="col-md-6">
+                    <label for="c_fname" class="text-black">Price <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="c_fname" name="product_price" value="{{product.product_price}}">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="c_lname" class="text-black">Image <span class="text-danger">*</span></label>
+                    <input type="file" class="form-control" id="c_lname" name="product_image">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <label for="c_message" class="text-black">Current Image </label>
+                    <img src="{{product.product_image.url}}" width="100px" height="100px">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <label for="c_message" class="text-black">Description </label>
+                    <textarea name="product_desc" id="c_message" cols="30" rows="7" class="form-control">{{product.product_desc}}</textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-lg-12">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Update Product">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
+{% endblock %}

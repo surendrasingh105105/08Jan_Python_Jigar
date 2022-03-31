@@ -1,0 +1,79 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+  
+  <div class="site-wrap">
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">{{product.product_category}}</strong></div>
+        </div>
+      </div>
+    </div>  
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="{{product.product_image.url}}" alt="Image" class="img-fluid" width="400px" height="400px">
+          </div>
+          <div class="col-md-6">
+            <h2 class="text-black">{{product.product_category}}</h2>
+            <p>{{product.product_desc}}</p>
+            <p><strong class="text-primary h4">{{product.product_price}}</strong></p>
+            <div class="mb-1 d-flex">
+              <label for="option-sm" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-sm" name="shop-sizes"></span> <span class="d-inline-block text-black">Small</span>
+              </label>
+              <label for="option-md" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-md" name="shop-sizes"></span> <span class="d-inline-block text-black">Medium</span>
+              </label>
+              <label for="option-lg" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-lg" name="shop-sizes"></span> <span class="d-inline-block text-black">Large</span>
+              </label>
+              
+            </div>
+            <div class="mb-5">
+              <div class="input-group mb-3" style="max-width: 120px;">
+              
+             
+              
+            </div>
+
+            </div>
+            <p>
+              {% if request.session.email %}
+
+                {% if cart_flag %}
+                  <a href="{% url 'remove_from_cart' pk=product.pk %}" class="buy-now btn btn-sm btn-danger">Remove From Cart</a>
+                {% else %}
+                  <a href="{% url 'add_to_cart' pk=product.pk %}" class="buy-now btn btn-sm btn-danger">Add To Cart</a>
+                {% endif %}
+                {% if wishlist_flag %}
+                  <a href="{% url 'remove_from_wishlist' pk=product.pk %}" class="buy-now btn btn-sm btn-danger">Remove From Wishlist</a>
+                {% else %}
+                  <a href="{% url 'add_to_wishlist' pk=product.pk %}" class="buy-now btn btn-sm btn-danger">Add To Wishlist</a>
+                {% endif %}
+                
+              {% else %}
+                <a href="{% url 'login' %}" class="buy-now btn btn-sm btn-primary">Login</a>
+              {% endif %}
+              
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  </body>
+</html>
+{% endblock %}

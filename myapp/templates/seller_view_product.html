@@ -1,0 +1,54 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+  
+  <div class="site-wrap">
+    
+
+    <div class="site-section block-3 site-blocks-2 bg-light">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-7 site-section-heading text-center pt-4">
+            <h2>My Products</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="nonloop-block-3 owl-carousel">
+              {% for i in products %}
+              <div class="item">
+                <div class="block-4 text-center">
+                  <figure class="block-4-image">
+                    <img src="{{i.product_image.url}}" alt="Image placeholder" class="img-fluid" style="width:250px;height: 250px;margin-left: 50px;">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="#">{{i.product_collection}} - {{i.product_category}}</a></h3>
+                    <p class="mb-0">{{i.product_desc}}</p>
+                    <p class="text-primary font-weight-bold">{{i.product_price}}</p>
+                    <p class="text-primary font-weight-bold">
+                      <a href="{% url 'seller_edit_product' pk=i.pk %}">
+                        <input type="button" value="EDIT" class="btn btn-primary">
+                      </a>
+                      <a href="{% url 'seller_delete_product' pk=i.pk %}">
+                        <input type="button" value="DELETE" class="btn btn-danger">
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    {% endblock %}
+  </body>
+</html>
